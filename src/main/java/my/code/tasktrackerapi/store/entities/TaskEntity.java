@@ -1,21 +1,20 @@
 package my.code.tasktrackerapi.store.entities;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 @Setter
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "project")
-public class ProjectEntity {
+@Table(name= "task")
+public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -23,11 +22,7 @@ public class ProjectEntity {
     @Column(unique = true)
     private String name;
 
-    @Builder.Default
     private Instant createAt = Instant.now();
-
-    @Builder.Default
-    @OneToMany
-    private List<TaskStateEntity> taskStates = new ArrayList<>();
+    private String description;
 
 }
